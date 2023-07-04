@@ -73,6 +73,18 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config CC_GCC_V_9_5_0
+    bool
+    prompt "9.5.0 (EXPERIMENTAL)"
+    depends on EXPERIMENTAL
+    select CC_GCC_9
+
+config CC_GCC_V_8_5_0
+    bool
+    prompt "8.5.0 (EXPERIMENTAL)"
+    depends on EXPERIMENTAL
+    select CC_GCC_8
+
 config CC_GCC_V_linaro_7_5
     bool
     prompt "linaro-7.5-2019.12 (EXPERIMENTAL)"
@@ -215,9 +227,27 @@ config CC_GCC_7_or_later
     bool
     select CC_GCC_6_or_later
 
-config CC_GCC_latest
+config CC_GCC_8
+    bool
+    select CC_GCC_8_or_later
+    select CC_GCC_HAS_LIBMPX
+
+config CC_GCC_8_or_later
     bool
     select CC_GCC_7_or_later
+
+config CC_GCC_9
+    bool
+    select CC_GCC_9_or_later
+    select CC_GCC_HAS_LIBMPX
+
+config CC_GCC_9_or_later
+    bool
+    select CC_GCC_8_or_later
+
+config CC_GCC_latest
+    bool
+    select CC_GCC_8_or_later
     select CC_GCC_HAS_LIBMPX
 
 # Only enable gcc's support for plugins if binutils has it as well
@@ -244,6 +274,8 @@ config CC_GCC_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "9.5.0" if CC_GCC_V_9_5_0
+    default "8.5.0" if CC_GCC_V_8_5_0
     default "linaro-7.5-2019.12" if CC_GCC_V_linaro_7_5
     default "7.5.0" if CC_GCC_V_7_5_0
     default "linaro-7.4-2019.02" if CC_GCC_V_linaro_7_4
