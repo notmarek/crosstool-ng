@@ -1,0 +1,4 @@
+reporter_name="NiLuJe"
+reporter_url="https://github.com/NiLuJe/crosstool-ng"
+reporter_comment="Kindle PW2+
+Note that these devices moved to glibc 2.19 since FW 5.6.5, but we didn't, to ensure backward compatibility with older FW."
